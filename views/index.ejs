@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+        <title>GNG</title>
+    </head>
+    <body>
+        <div id="main-container">
+            <h2>Welcome to the Great Number Game!</h2>
+            <h4>I am thinking of a number between 1 and 100</h4>
+            <h4>Take a guess</h4>
+            <%
+                <!-- This Decides What to Show if it's Higher, Lower or Equal-->
+                if(result && their_num){ %>
+            <div id="<%= result %>">
+                <h2><%= result.toUpperCase() %></h2>
+                <%  if(result == "congratulations"){ %>
+                    <a href="/play_again">Play Again</a>
+                <%  } %>
+            </div>
+            <%  }else{
+                    let their_num = 0;
+                } %>
+            <%
+                <!-- If not yet guessed -->
+                if(result != "congratulations"){ %>
+            <form action="/" method="post" autocomplete="off">
+                <input type="number" placeholder="1-100" name="guess" value="<%= their_num %>">
+                <input type="submit" value="Submit">
+            </form>
+            <%  } %>
+        </div>
+    </body>
+</html>
