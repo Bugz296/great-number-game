@@ -24,15 +24,15 @@ let result = "";
 /**
  * Routes
  */
-app.get('/', function(req, res){
+app.get('/assignments/gng/', function(req, res){
     res.render('index', {result: result, their_num: req.body.guess});
 });
 
-app.post('/', function(req, res){
+app.post('/assignments/gng/', function(req, res){
     if(!req.session.random_num){
         req.session.random_num = Math.floor(Math.random()*101);
     }
-    console.log(req.session.random_num);
+
     if(req.body.guess > req.session.random_num){
         result = "lower";
     }else if(req.body.guess < req.session.random_num){
@@ -43,12 +43,12 @@ app.post('/', function(req, res){
     res.render('index', {result: result, their_num: req.body.guess});
 });
 
-app.get('/play_again', function(req, res){
+app.get('/assignments/gng/play_again', function(req, res){
     req.session.destroy();
     result = "";
-    res.redirect('/');
+    res.redirect('/assignments/gng/');
 });
 
-app.listen(8000, function(){
-    console.log("Listening to port 8000");
+app.listen(3004, function(){
+    console.log("Listening to port 3004");
 });
